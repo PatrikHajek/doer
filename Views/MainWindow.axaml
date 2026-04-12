@@ -3,18 +3,46 @@
         xmlns:vm="using:doer.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
         x:Class="doer.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="doer">
+        Title="Doer"
+        Width="800"
+        Height="500"
+>
+    <StackPanel Margin="10">
+        <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto">
+            <StackPanel Grid.Row="0" Spacing="10">
+                <TextBox Watermark="Search tasks by name or description..." />
+                <Grid ColumnDefinitions="*, Auto, Auto">
+                    <TextBox Grid.Column="0" Watermark="Enter new task name..." />
+                    <Button Grid.Column="2" Classes="accent" Margin="5,0,0,0">
+                      Add Task
+                    </Button>
+                </Grid>
+            </StackPanel>
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+            <ListBox Grid.Row="1" Margin="0,10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                            <CheckBox Grid.Column="0" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Column="1" Margin="10,0">
+                                <TextBlock Text="Example Task Name" FontWeight="Medium"/>
+                                <TextBlock Text="Description of what needs to be done..." FontSize="12" Foreground="Gray"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="#Work" Foreground="SteelBlue" VerticalAlignment="Center" Margin="10,0"/>
+                            <Button Grid.Column="3" Content="Remove" Foreground="Red" Background="Transparent"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+            <TextBlock Grid.Row="2" Text="All changes are auto-saved to local text files." 
+                       FontSize="10" HorizontalAlignment="Center" Foreground="Gray"/>
+        </Grid>
+    </StackPanel>
 </Window>
