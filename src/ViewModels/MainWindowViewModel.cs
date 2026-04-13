@@ -1,4 +1,4 @@
-﻿namespace doer.ViewModels;
+﻿namespace Doer.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

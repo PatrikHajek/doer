@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-namespace doer.Core;
+namespace Doer.Core;
 
 class Json
 {

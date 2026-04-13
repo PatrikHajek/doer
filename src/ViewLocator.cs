@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using doer.ViewModels;
 
-namespace doer;
+namespace Doer;
 
 /// <summary>
 /// Given a view model, returns the corresponding view if possible.

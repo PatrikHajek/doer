@@ -1,4 +1,4 @@
-namespace doer.Core;
+namespace Doer.Core;
 
 class Assignee
 {

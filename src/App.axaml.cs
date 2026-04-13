@@ -7,7 +7,7 @@ using Avalonia.Markup.Xaml;
 using doer.ViewModels;
 using doer.Views;
 
-namespace doer;
+namespace Doer;
 
 public partial class App : Application
 {

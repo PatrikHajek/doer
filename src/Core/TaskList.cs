@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace doer.Core;
+namespace Doer.Core;
 
 class TaskList
 {
