@@ -4,8 +4,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using doer.ViewModels;
-using doer.Views;
+using Doer.ViewModels;
+using Doer.Views;
 
 namespace Doer;
 
