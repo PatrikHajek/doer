@@ -2,7 +2,7 @@ namespace Doer.Core;
 
 class Assignee
 {
-  public string Name { get; set; } = "";
+  public required string Name { get; set; }
 }
 
 

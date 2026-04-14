@@ -2,5 +2,5 @@ namespace Doer.Core;
 
 class Label
 {
-  public string Name { get; set; } = "";
+  public required string Name { get; set; }
 }
