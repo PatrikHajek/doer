@@ -22,10 +22,10 @@ class TaskList
       switch (chunk)
       {
         case string s when s.StartsWith('@'):
-          task.Assignees.Add(new Assignee { Name = chunk[1..] });
+          task.Assignees.Add(new Assignee(chunk[1..]));
           break;
         case string s when s.StartsWith('#'):
-          task.Labels.Add(new Label { Name = chunk[1..] });
+          task.Labels.Add(new Label(chunk[1..]));
           break;
         case { Length: > 0 }:
           task.Name += chunk + " ";

@@ -27,8 +27,8 @@ public class TaskListTests
     Assert.Single(List.Tasks);
 
     var task = new Doer.Core.Task() { Name = "do stuff" };
-    task.Assignees.Add(new Assignee() { Name = "me" });
-    task.Labels.Add(new Label() { Name = "app" });
+    task.Assignees.Add(new Assignee("me"));
+    task.Labels.Add(new Label("app"));
     Assert.Equivalent(task, List.Tasks[0], true);
   }
 
@@ -42,8 +42,8 @@ public class TaskListTests
     Assert.Single(List.Tasks);
 
     var task = new Doer.Core.Task() { Name = "do stuff" };
-    task.Assignees.Add(new Assignee() { Name = "me" });
-    task.Labels.Add(new Label() { Name = "app" });
+    task.Assignees.Add(new Assignee("me"));
+    task.Labels.Add(new Label("app"));
     Assert.Equivalent(task, List.Tasks[0], true);
   }
 
@@ -57,9 +57,9 @@ public class TaskListTests
     Assert.Single(List.Tasks);
 
     var task = new Doer.Core.Task() { Name = "Udělat další úkol" };
-    task.Assignees.Add(new Assignee() { Name = "kámoš" });
-    task.Labels.Add(new Label() { Name = "červená" });
-    task.Labels.Add(new Label() { Name = "modrá" });
+    task.Assignees.Add(new Assignee("kámoš"));
+    task.Labels.Add(new Label("červená"));
+    task.Labels.Add(new Label("modrá"));
     Assert.Equivalent(task, List.Tasks[0], true);
   }
 
