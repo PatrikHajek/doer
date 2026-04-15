@@ -10,6 +10,13 @@ public class Source
 
   public TaskList TaskList { get; } = new();
 
+  public static Source Init()
+  {
+    var source = new Source();
+    Json.Write(Path, source);
+    return source;
+  }
+
   public void Save()
   {
     Json.Write(Path, this);
