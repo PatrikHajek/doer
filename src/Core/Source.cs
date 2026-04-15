@@ -2,7 +2,7 @@ using System;
 
 namespace Doer.Core;
 
-class Source
+public class Source
 {
   private static readonly string Path = System.IO.Path.Combine(
       Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),

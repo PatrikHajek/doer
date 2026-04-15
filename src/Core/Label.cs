@@ -1,3 +1,3 @@
 namespace Doer.Core;
 
-record Label(string Name);
+public record Label(string Name);

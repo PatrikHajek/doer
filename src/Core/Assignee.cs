@@ -1,3 +1,3 @@
 namespace Doer.Core;
 
-record Assignee(string Name);
+public record Assignee(string Name);
