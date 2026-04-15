@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Doer.Core;
 
 public class TaskList
 {
-  public List<Task> Tasks { get; } = [];
+  public ObservableCollection<Task> Tasks { get; } = [];
 
   public void Add(string name)
   {
