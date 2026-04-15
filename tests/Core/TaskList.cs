@@ -64,6 +64,24 @@ public class TaskListTests
   }
 
   [Fact]
+  public void Add_AddsTask_With_MultipleAttributes()
+  {
+    Assert.Empty(List.Tasks);
+
+    List.Add("do stuff @me #app #backend @him #important");
+
+    Assert.Single(List.Tasks);
+
+    var task = new Doer.Core.Task() { Name = "do stuff" };
+    task.Assignees.Add(new Assignee("me"));
+    task.Assignees.Add(new Assignee("him"));
+    task.Labels.Add(new Label("app"));
+    task.Labels.Add(new Label("backend"));
+    task.Labels.Add(new Label("important"));
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
   public void Add_Fails_When_InputIsEmpty()
   {
     Assert.Empty(List.Tasks);
