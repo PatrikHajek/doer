@@ -31,13 +31,26 @@
                           <ListBox.ItemTemplate>
                               <DataTemplate>
                                   <Grid ColumnDefinitions="Auto, *, Auto, Auto">
-                                      <CheckBox Grid.Column="0" VerticalAlignment="Center"/>
-                                      <StackPanel Grid.Column="1" Margin="10,0">
-                                          <TextBlock Text="Example Task Name" FontWeight="Medium"/>
-                                          <TextBlock Text="Description of what needs to be done..." FontSize="12" Foreground="Gray"/>
+                                      <StackPanel Grid.Column="0" Margin="10,0">
+                                          <TextBlock Text="{Binding Name}" FontWeight="Medium"/>
+
+                                          <ItemsControl ItemsSource="{Binding Labels}">
+                                              <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                  <StackPanel Orientation="Horizontal" Spacing="5"/>
+                                                </ItemsPanelTemplate>
+                                              </ItemsControl.ItemsPanel>
+
+                                              <ItemsControl.ItemTemplate>
+                                                  <DataTemplate>
+                                                      <TextBlock Text="{Binding Name, StringFormat='#{0}'}" 
+                                                                 Foreground="SteelBlue" 
+                                                                 FontSize="12"/>
+                                                  </DataTemplate>
+                                              </ItemsControl.ItemTemplate>
+                                          </ItemsControl>
                                       </StackPanel>
-                                      <TextBlock Grid.Column="2" Text="#Work" Foreground="SteelBlue" VerticalAlignment="Center" Margin="10,0"/>
-                                      <Button Grid.Column="3" Content="Remove" Foreground="Red" Background="Transparent"/>
+                                      <Button Grid.Column="2" Content="Remove" Foreground="Red" Background="Transparent"/>
                                   </Grid>
                               </DataTemplate>
                           </ListBox.ItemTemplate>
