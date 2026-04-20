@@ -1,26 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Doer.Core;
 
 namespace Doer.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-  private string? _errorMessage;
-  public string? ErrorMessage
-  {
-    get => _errorMessage;
-    private set
-    {
-      if (_errorMessage != value)
-      {
-        _errorMessage = value;
-        OnPropertyChanged();
-        OnPropertyChanged(nameof(HasError));
-      }
-    }
-  }
-
+  [ObservableProperty]
+  [NotifyPropertyChangedFor(nameof(HasError))]
+  public partial string? ErrorMessage { get; set; } = null;
   public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
   private Source? _source;
