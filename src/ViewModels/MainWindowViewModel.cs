@@ -8,6 +8,8 @@ namespace Doer.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+  private Source? Source;
+
   [ObservableProperty]
   [NotifyPropertyChangedFor(nameof(HasError))]
   public partial string? ErrorMessage { get; set; } = null;
@@ -16,15 +18,13 @@ public partial class MainWindowViewModel : ViewModelBase
   [ObservableProperty]
   public partial string TaskNameAdd { get; set; } = string.Empty;
 
-  private Source? _source;
-  public Source Source => _source!;
-  public ObservableCollection<Task> Tasks => _source!.TaskList.Tasks;
+  public ObservableCollection<Task> Tasks => Source!.TaskList.Tasks;
 
   public MainWindowViewModel()
   {
     try
     {
-      _source = Source.Read();
+      Source = Source.Read();
     }
     catch (Exception e)
     {
@@ -37,7 +37,7 @@ public partial class MainWindowViewModel : ViewModelBase
   {
     try
     {
-      _source = Source.Init();
+      Source = Source.Init();
       ErrorMessage = null;
     }
     catch (Exception e)
@@ -51,7 +51,7 @@ public partial class MainWindowViewModel : ViewModelBase
   {
     if (!string.IsNullOrWhiteSpace(TaskNameAdd))
     {
-      Source.TaskList.Add(TaskNameAdd);
+      Source!.TaskList.Add(TaskNameAdd);
       TaskNameAdd = string.Empty;
     }
   }
