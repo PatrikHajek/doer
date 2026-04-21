@@ -21,9 +21,4 @@ public partial class MainWindow : Window
       Source.TaskList.Add(TaskName.Text);
     }
   }
-
-  private void FileNew(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-  {
-    ViewModel.FileNew();
-  }
 }

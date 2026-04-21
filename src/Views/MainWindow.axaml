@@ -71,7 +71,7 @@
             
             <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
                 <!-- <Button Content="Try Again" Command="{Binding Initialize}" /> -->
-                <Button Content="Create New File" Classes="accent" Click="FileNew" />
+                <Button Content="Create New File" Classes="accent" Command="{Binding FileNew}" />
             </StackPanel>
         </StackPanel>
     </Grid>

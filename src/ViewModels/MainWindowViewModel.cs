@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Doer.Core;
 
 namespace Doer.ViewModels;
@@ -28,6 +29,7 @@ public partial class MainWindowViewModel : ViewModelBase
     }
   }
 
+  [RelayCommand]
   public void FileNew()
   {
     try
