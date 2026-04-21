@@ -20,8 +20,8 @@
                       <StackPanel Grid.Row="0" Spacing="10">
                           <TextBox PlaceholderText="Search tasks by name or description..." />
                           <Grid ColumnDefinitions="*, Auto, Auto">
-                              <TextBox Name="TaskName" Grid.Column="0" PlaceholderText="Enter new task name..." />
-                              <Button Grid.Column="2" Classes="accent" Margin="5,0,0,0" Click="TaskAdd">
+                              <TextBox Grid.Column="0" Text="{Binding TaskNameAdd}" PlaceholderText="Enter new task name..." />
+                              <Button Grid.Column="2" Classes="accent" Margin="5,0,0,0" Command="{Binding TaskAddCommand}">
                                 Add Task
                               </Button>
                           </Grid>

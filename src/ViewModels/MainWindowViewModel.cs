@@ -13,6 +13,9 @@ public partial class MainWindowViewModel : ViewModelBase
   public partial string? ErrorMessage { get; set; } = null;
   public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
+  [ObservableProperty]
+  public partial string TaskNameAdd { get; set; } = string.Empty;
+
   private Source? _source;
   public Source Source => _source!;
   public ObservableCollection<Task> Tasks => _source!.TaskList.Tasks;
@@ -40,6 +43,16 @@ public partial class MainWindowViewModel : ViewModelBase
     catch (Exception e)
     {
       ErrorMessage = e.Message;
+    }
+  }
+
+  [RelayCommand]
+  private void TaskAdd()
+  {
+    if (!string.IsNullOrWhiteSpace(TaskNameAdd))
+    {
+      Source.TaskList.Add(TaskNameAdd);
+      TaskNameAdd = string.Empty;
     }
   }
 
