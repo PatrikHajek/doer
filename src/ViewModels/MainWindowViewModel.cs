@@ -42,4 +42,10 @@ public partial class MainWindowViewModel : ViewModelBase
       ErrorMessage = e.Message;
     }
   }
+
+  [RelayCommand]
+  private void TaskRemove(Task task)
+  {
+    Tasks.Remove(task);
+  }
 }

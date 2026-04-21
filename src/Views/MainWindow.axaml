@@ -50,7 +50,12 @@
                                               </ItemsControl.ItemTemplate>
                                           </ItemsControl>
                                       </StackPanel>
-                                      <Button Grid.Column="2" Content="Remove" Foreground="Red" Background="Transparent"/>
+                                      <Button Grid.Column="2"
+                                              Content="Remove"
+                                              Foreground="Red"
+                                              Background="Transparent"
+                                              Command="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TaskRemoveCommand}"
+                                              CommandParameter="{Binding}" />
                                   </Grid>
                               </DataTemplate>
                           </ListBox.ItemTemplate>
