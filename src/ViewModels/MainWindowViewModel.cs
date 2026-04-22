@@ -33,7 +33,7 @@ public partial class MainWindowViewModel : ViewModelBase
   }
 
   [RelayCommand]
-  public void FileNew()
+  private void FileNew()
   {
     try
     {
