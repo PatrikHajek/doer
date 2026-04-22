@@ -53,6 +53,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
       Source!.TaskList.Add(TaskNameAdd);
       TaskNameAdd = string.Empty;
+      Source!.Save();
     }
   }
 
@@ -60,5 +61,6 @@ public partial class MainWindowViewModel : ViewModelBase
   private void TaskRemove(Task task)
   {
     Tasks.Remove(task);
+    Source!.Save();
   }
 }
