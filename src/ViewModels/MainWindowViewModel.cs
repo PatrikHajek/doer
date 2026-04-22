@@ -16,7 +16,9 @@ public partial class MainWindowViewModel : ViewModelBase
   public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
   [ObservableProperty]
+  [NotifyCanExecuteChangedFor(nameof(TaskAddCommand))]
   public partial string TaskNameAdd { get; set; } = string.Empty;
+  private bool TaskAddEnabled => !string.IsNullOrWhiteSpace(TaskNameAdd);
 
   public ObservableCollection<Task> Tasks => Source!.TaskList.Tasks;
 
@@ -46,15 +48,12 @@ public partial class MainWindowViewModel : ViewModelBase
     }
   }
 
-  [RelayCommand]
+  [RelayCommand(CanExecute = nameof(TaskAddEnabled))]
   private void TaskAdd()
   {
-    if (!string.IsNullOrWhiteSpace(TaskNameAdd))
-    {
-      Source!.TaskList.Add(TaskNameAdd);
-      TaskNameAdd = string.Empty;
-      Source!.Save();
-    }
+    Source!.TaskList.Add(TaskNameAdd);
+    TaskNameAdd = string.Empty;
+    Source!.Save();
   }
 
   [RelayCommand]
