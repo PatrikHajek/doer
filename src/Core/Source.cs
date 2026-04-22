@@ -8,7 +8,7 @@ public class Source
       Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
       "doer");
 
-  public TaskList TaskList { get; } = new();
+  public TaskList TaskList { get; init; } = new();
 
   public static Source Init()
   {

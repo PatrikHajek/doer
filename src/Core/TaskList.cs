@@ -6,7 +6,7 @@ namespace Doer.Core;
 
 public class TaskList
 {
-  public ObservableCollection<Task> Tasks { get; } = [];
+  public ObservableCollection<Task> Tasks { get; init; } = [];
 
   public void Add(string name)
   {
