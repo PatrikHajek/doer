@@ -82,6 +82,78 @@ public class TaskListTests
   }
 
   [Fact]
+  public void Add_DoesNotAddLabel_When_PrecededWithNonWhitespaceChars()
+  {
+    List.Add("super secret code is 154#6681, don't forget!");
+
+    var task = new Doer.Core.Task() { Name = "super secret code is 154#6681, don't forget!" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddLabel_When_TheCharIsIsolated()
+  {
+    List.Add("super secret number is # don't forget!");
+
+    var task = new Doer.Core.Task() { Name = "super secret number is # don't forget!" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddLabel_When_EncasedInTheChars()
+  {
+    List.Add("super secret code is #hey# don't forget!");
+
+    var task = new Doer.Core.Task() { Name = "super secret code is #hey# don't forget!" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddLabel_When_TheCharIsAfter()
+  {
+    List.Add("super secret code is hey# don't forget!");
+
+    var task = new Doer.Core.Task() { Name = "super secret code is hey# don't forget!" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddAssignee_When_PrecededWithNonWhitespaceChars()
+  {
+    List.Add("write john-doe@gmail.com about cats");
+
+    var task = new Doer.Core.Task() { Name = "write john-doe@gmail.com about cats" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddAssignee_When_TheCharIsIsolated()
+  {
+    List.Add("write @ about cats");
+
+    var task = new Doer.Core.Task() { Name = "write @ about cats" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddAssignee_When_EncasedInTheChars()
+  {
+    List.Add("write @someone@ about cats");
+
+    var task = new Doer.Core.Task() { Name = "write @someone@ about cats" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
+  public void Add_DoesNotAddAssignee_When_TheCharIsAfter()
+  {
+    List.Add("write someone@ about cats");
+
+    var task = new Doer.Core.Task() { Name = "write someone@ about cats" };
+    Assert.Equivalent(task, List.Tasks[0], true);
+  }
+
+  [Fact]
   public void Add_Fails_When_InputIsEmpty()
   {
     Assert.Empty(List.Tasks);

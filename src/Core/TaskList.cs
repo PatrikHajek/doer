@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Doer.Core;
 
@@ -22,10 +23,10 @@ public class TaskList
     {
       switch (chunk)
       {
-        case string s when s.StartsWith('@'):
+        case string s when Regex.IsMatch(s, Task.AssigneeRegex.Pattern):
           task.Assignees.Add(new Assignee(chunk[1..]));
           break;
-        case string s when s.StartsWith('#'):
+        case string s when Regex.IsMatch(s, Task.LabelRegex.Pattern):
           task.Labels.Add(new Label(chunk[1..]));
           break;
         case { Length: > 0 }:
