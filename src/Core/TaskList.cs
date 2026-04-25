@@ -11,31 +11,7 @@ public class TaskList
 
   public void Add(string name)
   {
-    if (name.Trim().Length == 0)
-    {
-      throw new ArgumentException("Task name cannot be empty");
-    }
-
-    var chunks = name.Trim().Split(" ");
-    var task = new Task() { Name = "" };
-
-    foreach (var chunk in chunks)
-    {
-      switch (chunk)
-      {
-        case string s when Regex.IsMatch(s, Task.AssigneeRegex.Pattern):
-          task.Assignees.Add(new Assignee(chunk[1..]));
-          break;
-        case string s when Regex.IsMatch(s, Task.LabelRegex.Pattern):
-          task.Labels.Add(new Label(chunk[1..]));
-          break;
-        case { Length: > 0 }:
-          task.Name += chunk + " ";
-          break;
-      }
-    }
-
-    task.Name = task.Name.Trim();
+    var task = new Task(name);
     Tasks.Add(task);
   }
 }
