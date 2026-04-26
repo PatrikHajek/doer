@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Doer.Core;
@@ -45,5 +46,40 @@ public class Task
     }
 
     Name = Name.Trim();
+  }
+
+  /**
+   * Return the rank of the current task relative to the supplied one. The lower
+   * the rank, the better it is (0 is the best rank).
+   *
+   * When a negative value is returned, it means that the tasks do not match.
+   */
+  public int Rank(Task needle)
+  {
+    if (needle.Labels.Count != Labels.Intersect(needle.Labels).Count())
+    {
+      return -1;
+    }
+
+    if (needle.Assignees.Count != Assignees.Intersect(needle.Assignees).Count())
+    {
+      return -1;
+    }
+
+    var index = 0;
+    foreach (var character in needle.Name.ToLower())
+    {
+      var charIndex = Name[index..].ToLower().IndexOf(character);
+      if (charIndex >= 0)
+      {
+        index += charIndex;
+      }
+      else
+      {
+        return -1;
+      }
+    }
+
+    return index;
   }
 }
