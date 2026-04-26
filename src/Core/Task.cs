@@ -10,6 +10,9 @@ public class Task
   public HashSet<Assignee> Assignees { get; init; } = [];
   public HashSet<Label> Labels { get; init; } = [];
 
+  public static GeneratedRegexAttribute AssigneeRegex { get; } = new(@"^@[^@]+$");
+  public static GeneratedRegexAttribute LabelRegex { get; } = new(@"^#[^#]+$");
+
   public Task()
   {
     Name = "";
@@ -43,7 +46,4 @@ public class Task
 
     Name = Name.Trim();
   }
-
-  public static GeneratedRegexAttribute AssigneeRegex { get; } = new(@"^@[^@]+$");
-  public static GeneratedRegexAttribute LabelRegex { get; } = new(@"^#[^#]+$");
 }
