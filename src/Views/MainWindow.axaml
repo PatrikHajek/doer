@@ -51,6 +51,22 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
+
+                                <ItemsControl ItemsSource="{Binding Assignees}">
+                                    <ItemsControl.ItemsPanel>
+                                      <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="5"/>
+                                      </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name, StringFormat='@{0}'}" 
+                                                       Foreground="Coral" 
+                                                       FontSize="12"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </StackPanel>
                             <Button Grid.Column="2"
                                     Content="Remove"
