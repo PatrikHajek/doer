@@ -15,12 +15,12 @@ public partial class MainWindowViewModel : ViewModelBase
   public partial string? ErrorMessage { get; set; } = null;
   public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
+  public ObservableCollection<Task> Tasks { get; set; } = [];
+
   [ObservableProperty]
   [NotifyCanExecuteChangedFor(nameof(TaskAddCommand))]
   public partial string TaskNameAdd { get; set; } = string.Empty;
   private bool TaskAddEnabled => !string.IsNullOrWhiteSpace(TaskNameAdd);
-
-  public ObservableCollection<Task> Tasks { get; set; } = [];
 
   [ObservableProperty]
   public partial string SearchQuery { get; set; } = string.Empty;
