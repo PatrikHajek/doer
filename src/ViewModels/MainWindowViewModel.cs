@@ -20,13 +20,18 @@ public partial class MainWindowViewModel : ViewModelBase
   public partial string TaskNameAdd { get; set; } = string.Empty;
   private bool TaskAddEnabled => !string.IsNullOrWhiteSpace(TaskNameAdd);
 
-  public ObservableCollection<Task> Tasks => Source!.TaskList.Tasks;
+  public ObservableCollection<Task> Tasks { get; set; } = [];
+
+  [ObservableProperty]
+  public partial string SearchQuery { get; set; } = string.Empty;
 
   public MainWindowViewModel()
   {
     try
     {
       Source = Source.Read();
+      Source.TaskList.Tasks.CollectionChanged += (s, e) => UpdateTasks();
+      UpdateTasks();
     }
     catch (Exception e)
     {
@@ -59,7 +64,31 @@ public partial class MainWindowViewModel : ViewModelBase
   [RelayCommand]
   private void TaskRemove(Task task)
   {
-    Tasks.Remove(task);
+    Source!.TaskList.Tasks.Remove(task);
     Source!.Save();
+  }
+
+  partial void OnSearchQueryChanged(string value)
+  {
+    UpdateTasks();
+  }
+
+  private void UpdateTasks()
+  {
+    Tasks.Clear();
+    if (!string.IsNullOrEmpty(SearchQuery))
+    {
+      foreach (var task in Source!.TaskList.Search(SearchQuery))
+      {
+        Tasks.Add(task);
+      }
+    }
+    else
+    {
+      foreach (var task in Source!.TaskList.Tasks)
+      {
+        Tasks.Add(task);
+      }
+    }
   }
 }

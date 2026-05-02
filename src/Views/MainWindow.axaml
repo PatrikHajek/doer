@@ -18,7 +18,7 @@
               <StackPanel Margin="10">
                   <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto">
                       <StackPanel Grid.Row="0" Spacing="10">
-                          <TextBox PlaceholderText="Search tasks by name or description..." />
+                          <TextBox Text="{Binding SearchQuery}" PlaceholderText="Search tasks by name or description..." />
                           <Grid ColumnDefinitions="*, Auto, Auto">
                               <TextBox Grid.Column="0" Text="{Binding TaskNameAdd}" PlaceholderText="Enter new task name...">
                                   <TextBox.KeyBindings>
