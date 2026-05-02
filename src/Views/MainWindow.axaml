@@ -24,7 +24,7 @@
                         </TextBox.KeyBindings>
                     </TextBox>
                     <Button Grid.Column="2" Classes="accent" Margin="5,0,0,0" Command="{Binding TaskAddCommand}">
-                      Add Task
+                        Add Task
                     </Button>
                 </Grid>
             </StackPanel>
