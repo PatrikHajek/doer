@@ -32,9 +32,12 @@
             <ListBox Grid.Row="1" Margin="0,10" ItemsSource="{Binding Tasks}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="Auto, *, Auto, Auto">
-                            <StackPanel Grid.Column="0" Margin="10,0">
-                                <TextBlock Text="{Binding Name}" FontWeight="Medium"/>
+                        <Grid ColumnDefinitions="*, Auto">
+                            <StackPanel Grid.Column="0" Margin="10,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}"
+                                           FontWeight="Medium"
+                                           TextTrimming="CharacterEllipsis"
+                                           ToolTip.Tip="{Binding Name}" />
 
                                 <ItemsControl ItemsSource="{Binding Labels}">
                                     <ItemsControl.ItemsPanel>
@@ -47,7 +50,9 @@
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Name, StringFormat='#{0}'}" 
                                                        Foreground="SteelBlue" 
-                                                       FontSize="12"/>
+                                                       FontSize="12"
+                                                       MaxWidth="100"
+                                                       TextTrimming="CharacterEllipsis" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -63,15 +68,19 @@
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Name, StringFormat='@{0}'}" 
                                                        Foreground="Coral" 
-                                                       FontSize="12"/>
+                                                       FontSize="12"
+                                                       MaxWidth="100"
+                                                       TextTrimming="CharacterEllipsis" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
-                            <Button Grid.Column="2"
+
+                            <Button Grid.Column="1"
                                     Content="Remove"
                                     Foreground="Red"
                                     Background="Transparent"
+                                    VerticalAlignment="Center"
                                     Command="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TaskRemoveCommand}"
                                     CommandParameter="{Binding}" />
                         </Grid>
