@@ -16,9 +16,9 @@
     <Grid>
         <Grid IsVisible="{Binding !HasError}" RowDefinitions="Auto, *, Auto" Margin="10">
             <StackPanel Grid.Row="0" Spacing="10">
-                <TextBox Text="{Binding SearchQuery}" PlaceholderText="Search tasks by name or description..." />
+                <TextBox Text="{Binding SearchQuery}" PlaceholderText="Search tasks..." />
                 <Grid ColumnDefinitions="*, Auto, Auto">
-                    <TextBox Grid.Column="0" Text="{Binding TaskNameAdd}" PlaceholderText="Enter new task name...">
+                    <TextBox Grid.Column="0" Text="{Binding TaskNameAdd}" PlaceholderText="Describe task...">
                         <TextBox.KeyBindings>
                             <KeyBinding Gesture="Enter" Command="{Binding TaskAddCommand}" />
                         </TextBox.KeyBindings>
