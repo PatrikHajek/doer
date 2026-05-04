@@ -112,16 +112,16 @@
                              Padding="10"
                              AcceptsReturn="False">
                         <TextBox.KeyBindings>
-                          <KeyBinding Gesture="Enter" Command="{Binding SaveAndCloseEditorCommand}" />
-                          <KeyBinding Gesture="Escape" Command="{Binding CloseEditorCommand}" />
+                          <KeyBinding Gesture="Enter" Command="{Binding EditorSaveAndCloseCommand}" />
+                          <KeyBinding Gesture="Escape" Command="{Binding EditorCloseCommand}" />
                         </TextBox.KeyBindings>
                     </TextBox>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
-                        <Button Content="Cancel" Command="{Binding CloseEditorCommand}" />
+                        <Button Content="Cancel" Command="{Binding EditorCloseCommand}" />
                         <Button Content="Save Changes" 
                                 Classes="accent" 
-                                Command="{Binding SaveAndCloseEditorCommand}" />
+                                Command="{Binding EditorSaveAndCloseCommand}" />
                     </StackPanel>
                 </StackPanel>
             </Border>

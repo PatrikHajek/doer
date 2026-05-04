@@ -109,7 +109,7 @@ public partial class MainWindowViewModel : ViewModelBase
   }
 
   [RelayCommand]
-  public void SaveAndCloseEditor()
+  public void EditorSaveAndClose()
   {
     if (Task == null)
     {
@@ -129,7 +129,7 @@ public partial class MainWindowViewModel : ViewModelBase
   }
 
   [RelayCommand]
-  public void CloseEditor()
+  public void EditorClose()
   {
     Task = null;
   }
