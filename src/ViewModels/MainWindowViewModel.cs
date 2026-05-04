@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Doer.Core;
@@ -24,6 +25,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
   [ObservableProperty]
   public partial string SearchQuery { get; set; } = string.Empty;
+
+  [ObservableProperty]
+  public partial Task? Task { get; set; } = null;
+  [ObservableProperty]
+  public partial string TaskText { get; set; } = string.Empty;
 
   public MainWindowViewModel()
   {
@@ -90,5 +96,43 @@ public partial class MainWindowViewModel : ViewModelBase
         Tasks.Add(task);
       }
     }
+  }
+
+  partial void OnTaskChanged(Task? value)
+  {
+    if (value != null)
+    {
+      var labels = string.Join(" ", value.Labels.Select(l => $"#{l.Name}"));
+      var assignees = string.Join(" ", value.Assignees.Select(a => $"@{a.Name}"));
+
+      TaskText = $"{value.Name} {labels} {assignees}".Trim();
+    }
+
+  }
+
+  [RelayCommand]
+  public void SaveAndCloseEditor()
+  {
+    if (Task == null)
+    {
+      throw new Exception("Method is called only in popup where Task is known");
+    }
+
+    Task.Update(TaskText);
+    int index = Tasks.IndexOf(Task);
+    if (index < 0)
+    {
+      throw new InvalidOperationException("User selects Task from Tasks");
+    }
+
+    Tasks[index] = Task;
+    Source!.Save();
+    Task = null;
+  }
+
+  [RelayCommand]
+  public void CloseEditor()
+  {
+    Task = null;
   }
 }
