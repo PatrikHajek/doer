@@ -104,10 +104,8 @@ public partial class MainWindowViewModel : ViewModelBase
     {
       var labels = string.Join(" ", value.Labels.Select(l => $"#{l.Name}"));
       var assignees = string.Join(" ", value.Assignees.Select(a => $"@{a.Name}"));
-
       TaskText = $"{value.Name} {labels} {assignees}".Trim();
     }
-
   }
 
   [RelayCommand]
