@@ -82,4 +82,23 @@ public class Task
 
     return index;
   }
+
+  public void Update(string name)
+  {
+    var task = new Task(name);
+
+    Name = task.Name;
+
+    Labels.Clear();
+    foreach (var label in task.Labels)
+    {
+      Labels.Add(label);
+    }
+
+    Assignees.Clear();
+    foreach (var assignee in task.Assignees)
+    {
+      Assignees.Add(assignee);
+    }
+  }
 }
